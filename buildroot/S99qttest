@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Start the qttest....
+#
+
+export TSLIB_TSDEVICE=/dev/input/event1
+export TSLIB_TSEVENTTYPE=INPUT
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_CALIBFILE=/etc/pointercalres
+export QWS_MOUSE_PROTO="Tslib:/dev/input/event1 MouseMan:/dev/input/mouse2"
+
+case "$1" in
+  start)
+ 	echo "Starting qttest..."
+	/usr/share/demo/qttest -qws &
+	/usr/share/demo/hdmi_x210 &
+	;;
+  stop)
+	echo -n "Stopping qttest..."
+	;;
+  restart|reload)
+	"$0" stop
+	"$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

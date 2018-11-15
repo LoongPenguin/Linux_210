@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<item>
+		<title>Boot QT System</title>
+		<command>console off; fileram -f /romdisk/boot/zImage-qt 0x30008000; bootlinux 0x30008000 0x30000100 2456 "console=ttySAC2,115200 root=/dev/mmcblk0p2 rw init=/linuxrc rootfstype=ext4"; console on;</command>
+	</item>
+	<item>
+		<title>Update QT System</title>
+		<command>fileram -f /romdisk/boot/zImage-initrd 0x30008000; bootlinux 0x30008000 0x30000100 2456 "console=tty0 command=burn-qt";</command>
+	</item>
+	<item>
+		<title>Recovery QT System</title>
+		<command>fileram -f /romdisk/boot/zImage-initrd 0x30008000; bootlinux 0x30008000 0x30000100 2456 "console=tty0 command=burn-qt-recovery";</command>
+	</item>
+ 	<item>
+		<title>Linux Debug</title>
+		<command>fileram -f /romdisk/boot/zImage-initrd 0x30008000; bootlinux 0x30008000 0x30000100 2456 "console=ttySAC2,115200";</command>
+	</item>
+	<item>
+		<title>Shell Command Line</title>
+		<command>exit --shell</command>
+	</item>
+	<item>
+		<title>Reboot System</title>
+		<command>reboot</command>
+	</item>
+	<item>
+		<title>Shutdown System</title>
+		<command>halt</command>
+	</item>
+</menu>
